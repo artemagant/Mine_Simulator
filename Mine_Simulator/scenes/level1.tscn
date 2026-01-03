@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://dnev4cls1v4s5"]
 
-[ext_resource type="PackedScene" uid="uid://48jcjbfpwowd" path="res://scenes/rock.tscn" id="1_g2h75"]
 [ext_resource type="Script" uid="uid://bcgkoik8vx6ps" path="res://scripts/level.gd" id="1_wwpf4"]
+[ext_resource type="PackedScene" uid="uid://by08x67l6bynx" path="res://scenes/sell_merchant.tscn" id="2_wwpf4"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_g2h75"]
 
@@ -9,6 +9,7 @@
 size = Vector3(0.7, 4.5, 1)
 
 [node name="levelroot" type="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0)
 use_collision = true
 script = ExtResource("1_wwpf4")
 metadata/_edit_group_ = true
@@ -43,9 +44,6 @@ use_collision = true
 transform = Transform3D(4, 0, 0, 0, 0.39900002, 0, 0, 0, 4.3700004, 4.4, 5.4, 16.5)
 use_collision = true
 
-[node name="rock" parent="." instance=ExtResource("1_g2h75")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -0.29999995)
-
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, -5.7000003)
 disable_mode = 1
@@ -60,3 +58,6 @@ transform = Transform3D(-3.090862e-08, -3.090862e-08, -1, -0.70710677, 0.7071067
 shape = SubResource("BoxShape3D_g2h75")
 
 [node name="rocks" type="Node3D" parent="."]
+
+[node name="Sell_Merchant" parent="." instance=ExtResource("2_wwpf4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)

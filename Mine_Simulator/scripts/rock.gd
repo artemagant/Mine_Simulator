@@ -24,7 +24,8 @@ func _on_area_entered(area: Node3D) -> void:
 			queue_free()
 			global. rocks -= 1
 			var gett = global. rock_gain_base * global. luck_multiplayer
-			global. rock += randi_range(gett-1, gett+2) 
+			global. rock += randi_range(gett-1, gett+2)
+			global. save() 
 		else:
 			var random_index = randi() % materials_array.size()
 			var random_material = materials_array[random_index]

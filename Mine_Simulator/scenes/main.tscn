@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://dp4hbokspy4d5"]
+[gd_scene load_steps=11 format=3 uid="uid://dp4hbokspy4d5"]
 
 [ext_resource type="PackedScene" uid="uid://biqy8cpdfrp7v" path="res://scenes/ui.tscn" id="2_0wfyh"]
 [ext_resource type="PackedScene" uid="uid://cpyflcuucq0h1" path="res://scenes/player.tscn" id="2_sugp2"]
 [ext_resource type="PackedScene" uid="uid://dnev4cls1v4s5" path="res://scenes/level1.tscn" id="3_sugp2"]
 [ext_resource type="Script" uid="uid://c436qtyiob7kb" path="res://scripts/Fps_counter.gd" id="4_jyhfs"]
 [ext_resource type="Script" uid="uid://dvquges020dpu" path="res://scripts/ore_counter.gd" id="5_tbgi4"]
+[ext_resource type="Script" uid="uid://02s400kogb6g" path="res://scripts/hud.gd" id="6_tefeu"]
 
 [sub_resource type="ORMMaterial3D" id="ORMMaterial3D_sgp6g"]
 albedo_color = Color(0.3254902, 0.3254902, 0.3254902, 1)
@@ -40,7 +41,7 @@ material = SubResource("ORMMaterial3D_sgp6g")
 environment = SubResource("Environment_jyhfs")
 
 [node name="Player" parent="." instance=ExtResource("2_sugp2")]
-transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 2.4, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 3.7000003, 4.6, 0)
 
 [node name="ui" parent="." instance=ExtResource("2_0wfyh")]
 
@@ -64,3 +65,20 @@ theme_override_font_sizes/font_size = 25
 text = "Rocks: none  Copper: none"
 autowrap_mode = 2
 script = ExtResource("5_tbgi4")
+
+[node name="HUD" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+script = ExtResource("6_tefeu")
+
+[node name="sell_button" type="Button" parent="HUD"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -43.0
+offset_right = 127.0
+offset_bottom = 145.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 100
+text = "sell"
+
+[connection signal="pressed" from="HUD/sell_button" to="HUD" method="_on_sell_button_pressed"]

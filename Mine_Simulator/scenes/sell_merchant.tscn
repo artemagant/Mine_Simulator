@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://by08x67l6bynx"]
+
+[ext_resource type="Script" uid="uid://nbghioa4ae0a" path="res://scripts/sell_merchant.gd" id="1_57r1m"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_qf1ge"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_57r1m"]
+radius = 2.7
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qf1ge"]
+radius = 0.8
+height = 2.5
+
+[node name="Sell_Merchant" type="Area3D"]
+script = ExtResource("1_57r1m")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.4, 0, 0, 0, 2.08, 0, 0, 0, 1.5, 0, 0, 0)
+mesh = SubResource("BoxMesh_qf1ge")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_57r1m")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.100000024, -0.099999905, 0.100000024)
+shape = SubResource("CapsuleShape3D_qf1ge")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

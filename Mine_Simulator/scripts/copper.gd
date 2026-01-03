@@ -23,6 +23,7 @@ func _on_area_entered(area: Node3D) -> void:
 			global. rocks -= 1
 			var gett = global. copper_gain_base * global. luck_multiplayer
 			global. copper += randi_range(gett-1, gett+2) 
+			global. save()
 		else:
 			var random_index = randi() % materials_array.size()
 			var random_material = materials_array[random_index]
