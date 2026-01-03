@@ -1,0 +1,114 @@
+[gd_scene load_steps=17 format=3 uid="uid://cu5smlohebqnm"]
+
+[ext_resource type="Script" uid="uid://clhtg16nyo5k1" path="res://scripts/pickaxe.gd" id="1_2ikqw"]
+[ext_resource type="ArrayMesh" uid="uid://bth8ohd6328tf" path="res://pickaxe.obj" id="1_40cab"]
+
+[sub_resource type="Gradient" id="Gradient_2ikqw"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ln4w3"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_07kgg"]
+width = 960
+height = 1264
+noise = SubResource("FastNoiseLite_ln4w3")
+color_ramp = SubResource("Gradient_2ikqw")
+seamless = true
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_2ikqw"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2ikqw"]
+albedo_color = Color(0.39215687, 0.15686275, 0.11764706, 1)
+albedo_texture = SubResource("NoiseTexture2D_07kgg")
+metallic = 1.0
+metallic_specular = 1.0
+metallic_texture = SubResource("NoiseTexture2D_2ikqw")
+
+[sub_resource type="Gradient" id="Gradient_khqrn"]
+offsets = PackedFloat32Array(0.20613933, 0.3705908, 0.4445752, 0.99551755)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 0.30666667, 0.30666667, 0.30666667, 1, 0.30666667, 0.30666667, 0.30666667, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_tnc31"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_h48u7"]
+width = 1032
+height = 1034
+noise = SubResource("FastNoiseLite_tnc31")
+color_ramp = SubResource("Gradient_khqrn")
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_2ikqw"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ln4w3"]
+blend_mode = 3
+cull_mode = 1
+shading_mode = 2
+diffuse_mode = 2
+specular_mode = 1
+disable_ambient_light = true
+disable_fog = true
+disable_specular_occlusion = true
+albedo_color = Color(0.9069274, 0.80953395, 1, 1)
+albedo_texture = SubResource("NoiseTexture2D_h48u7")
+metallic = 1.0
+metallic_specular = 1.0
+metallic_texture = SubResource("PlaceholderTexture2D_2ikqw")
+
+[sub_resource type="Animation" id="Animation_ln4w3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_2ikqw"]
+resource_name = "mine"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.43333334),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.0017453292, 0, 0), Vector3(1.2217305, 0, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_07kgg"]
+_data = {
+&"RESET": SubResource("Animation_ln4w3"),
+&"mine": SubResource("Animation_2ikqw")
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2ikqw"]
+size = Vector3(2.7, 1.8000001, 0.8)
+
+[node name="pickaxe" type="Area3D"]
+disable_mode = 1
+script = ExtResource("1_2ikqw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_40cab")
+surface_material_override/0 = SubResource("StandardMaterial3D_2ikqw")
+surface_material_override/1 = SubResource("StandardMaterial3D_ln4w3")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MeshInstance3D"]
+libraries = {
+&"": SubResource("AnimationLibrary_07kgg")
+}
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0.049999982, 0.30000013, 0.3)
+shape = SubResource("BoxShape3D_2ikqw")
+disabled = true
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

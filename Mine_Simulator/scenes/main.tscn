@@ -1,0 +1,66 @@
+[gd_scene load_steps=10 format=3 uid="uid://dp4hbokspy4d5"]
+
+[ext_resource type="PackedScene" uid="uid://biqy8cpdfrp7v" path="res://scenes/ui.tscn" id="2_0wfyh"]
+[ext_resource type="PackedScene" uid="uid://cpyflcuucq0h1" path="res://scenes/player.tscn" id="2_sugp2"]
+[ext_resource type="PackedScene" uid="uid://dnev4cls1v4s5" path="res://scenes/level1.tscn" id="3_sugp2"]
+[ext_resource type="Script" uid="uid://c436qtyiob7kb" path="res://scripts/Fps_counter.gd" id="4_jyhfs"]
+[ext_resource type="Script" uid="uid://dvquges020dpu" path="res://scripts/ore_counter.gd" id="5_tbgi4"]
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_sgp6g"]
+albedo_color = Color(0.3254902, 0.3254902, 0.3254902, 1)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0wfyh"]
+sky_top_color = Color(0.6651851, 0.7977378, 1, 1)
+sky_horizon_color = Color(0.9063318, 0.95468724, 1, 1)
+sky_curve = 2.954735
+ground_bottom_color = Color(0.3491902, 0.3491902, 0.42358288, 1)
+ground_horizon_color = Color(0.6651851, 0.6651851, 0.735357, 1)
+
+[sub_resource type="Sky" id="Sky_sugp2"]
+sky_material = SubResource("ProceduralSkyMaterial_0wfyh")
+
+[sub_resource type="Environment" id="Environment_jyhfs"]
+background_mode = 2
+sky = SubResource("Sky_sugp2")
+fog_enabled = true
+fog_sun_scatter = 6.8
+fog_density = 0.042
+fog_sky_affect = 0.863
+adjustment_enabled = true
+adjustment_saturation = 3.81
+
+[node name="main" type="Node3D"]
+
+[node name="floor" type="CSGBox3D" parent="."]
+use_collision = true
+size = Vector3(100, 1, 100)
+material = SubResource("ORMMaterial3D_sgp6g")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_jyhfs")
+
+[node name="Player" parent="." instance=ExtResource("2_sugp2")]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 2.4, 0, 0)
+
+[node name="ui" parent="." instance=ExtResource("2_0wfyh")]
+
+[node name="levelroot" parent="." instance=ExtResource("3_sugp2")]
+
+[node name="Fps_counter" type="Label" parent="."]
+offset_left = 40.0
+offset_top = 55.0
+offset_right = 80.0
+offset_bottom = 78.0
+theme_override_font_sizes/font_size = 50
+text = "Fps: none"
+script = ExtResource("4_jyhfs")
+
+[node name="Ore_counter" type="Label" parent="."]
+offset_left = 1061.0
+offset_top = 14.0
+offset_right = 1101.0
+offset_bottom = 163.0
+theme_override_font_sizes/font_size = 25
+text = "Rocks: none  Copper: none"
+autowrap_mode = 2
+script = ExtResource("5_tbgi4")

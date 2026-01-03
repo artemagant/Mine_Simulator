@@ -1,0 +1,62 @@
+[gd_scene load_steps=5 format=3 uid="uid://dnev4cls1v4s5"]
+
+[ext_resource type="PackedScene" uid="uid://48jcjbfpwowd" path="res://scenes/rock.tscn" id="1_g2h75"]
+[ext_resource type="Script" uid="uid://bcgkoik8vx6ps" path="res://scripts/level.gd" id="1_wwpf4"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_g2h75"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g2h75"]
+size = Vector3(0.7, 4.5, 1)
+
+[node name="levelroot" type="CSGCombiner3D"]
+use_collision = true
+script = ExtResource("1_wwpf4")
+metadata/_edit_group_ = true
+
+[node name="StaticBody3D3" type="StaticBody3D" parent="."]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="StaticBody3D3"]
+transform = Transform3D(-4.371139e-08, 0, -2.6220002, 0, 1.33, 0, 1.0000001, 0, -1.1461128e-07, 4.4, 1.3000003, -2.8999999)
+use_collision = true
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="."]
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="StaticBody3D2"]
+transform = Transform3D(-4.3711385e-08, 0, 8.740001, 0, 2.66, 0, -1, 0, -3.8203757e-07, 4.8, 1.9000003, -3.9)
+use_collision = true
+
+[node name="StaticBody3D4" type="StaticBody3D" parent="."]
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="StaticBody3D4"]
+transform = Transform3D(4, 0, 0, 0, 0.39900002, 0, 0, 0, 4.3700004, 4.4, 4.5, 1)
+use_collision = true
+
+[node name="StaticBody3D5" type="StaticBody3D" parent="."]
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="StaticBody3D5"]
+transform = Transform3D(4, 0, 0, 0, 0.39900002, 0, 0, 0, 4.3700004, 4.4, 4.5, 9)
+use_collision = true
+
+[node name="StaticBody3D6" type="StaticBody3D" parent="."]
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="StaticBody3D6"]
+transform = Transform3D(4, 0, 0, 0, 0.39900002, 0, 0, 0, 4.3700004, 4.4, 5.4, 16.5)
+use_collision = true
+
+[node name="rock" parent="." instance=ExtResource("1_g2h75")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -0.29999995)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, -5.7000003)
+disable_mode = 1
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(-3.090862e-08, -1.398306e-07, -1, -0.7071068, 3.1989508, 2.512148e-15, 0.7071067, 3.1989515, -4.371139e-08, 1.2, -0.5519999, 0.041999817)
+mesh = SubResource("BoxMesh_g2h75")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(-3.090862e-08, -3.090862e-08, -1, -0.70710677, 0.70710677, 0, 0.70710677, 0.70710677, -4.371139e-08, 1.2, -0.42426407, -0.21213198)
+shape = SubResource("BoxShape3D_g2h75")
+
+[node name="rocks" type="Node3D" parent="."]

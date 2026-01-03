@@ -1,0 +1,51 @@
+[gd_scene load_steps=8 format=3 uid="uid://biqy8cpdfrp7v"]
+
+[ext_resource type="Texture2D" uid="uid://1sirya0t1dc0" path="res://icon.svg" id="1_nt7q6"]
+[ext_resource type="Script" uid="uid://cn6uxedvh48oi" path="res://scripts/move_forvard_button.gd" id="1_x4jx1"]
+[ext_resource type="Script" uid="uid://byh3u25nrb7fg" path="res://scripts/move_back_button.gd" id="3_yev5y"]
+[ext_resource type="Script" uid="uid://dyv7m8pk6m6bx" path="res://scripts/jump_button.gd" id="4_gdt2y"]
+[ext_resource type="Script" uid="uid://bcky5ixs4akkl" path="res://scripts/mine_button.gd" id="5_wm3ai"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x4jx1"]
+size = Vector2(130, 130)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8dubc"]
+size = Vector2(130, 130)
+
+[node name="ui" type="CanvasLayer"]
+
+[node name="TouchScreenButton2" type="TouchScreenButton" parent="."]
+position = Vector2(79, 306)
+texture_normal = ExtResource("1_nt7q6")
+shape = SubResource("RectangleShape2D_x4jx1")
+action = "forward"
+script = ExtResource("1_x4jx1")
+anchor_point = 0
+offset_from_edge = Vector2(75, 300)
+
+[node name="TouchScreenButton3" type="TouchScreenButton" parent="."]
+position = Vector2(75, 472)
+texture_normal = ExtResource("1_nt7q6")
+shape = SubResource("RectangleShape2D_x4jx1")
+action = "down"
+script = ExtResource("3_yev5y")
+anchor_point = 0
+offset_from_edge = Vector2(75, 470)
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="."]
+position = Vector2(1300, 400)
+texture_normal = ExtResource("1_nt7q6")
+shape = SubResource("RectangleShape2D_x4jx1")
+action = "up"
+script = ExtResource("4_gdt2y")
+anchor_point = 0
+offset_from_edge = Vector2(1300, 400)
+
+[node name="Mine_button" type="TouchScreenButton" parent="."]
+position = Vector2(1300, 200)
+texture_normal = ExtResource("1_nt7q6")
+shape = SubResource("RectangleShape2D_8dubc")
+action = "mine"
+script = ExtResource("5_wm3ai")
+anchor_point = 0
+offset_from_edge = Vector2(1300, 200)

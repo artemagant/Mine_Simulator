@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://cpyflcuucq0h1"]
+
+[ext_resource type="Script" uid="uid://11f3rx52o7k8" path="res://scripts/character_body_3d.gd" id="1_3vyb7"]
+[ext_resource type="PackedScene" uid="uid://cu5smlohebqnm" path="res://scenes/pickaxe.tscn" id="2_g2els"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_g2els"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qhqgy"]
+height = 1.3
+
+[node name="CharacterBody3D" type="CharacterBody3D"]
+script = ExtResource("1_3vyb7")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.6, 0, 0, 0, 1, 0, 1.5999999, 0)
+mesh = SubResource("CapsuleMesh_g2els")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5928574, 0)
+shape = SubResource("CapsuleShape3D_qhqgy")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="pickaxe" parent="." instance=ExtResource("2_g2els")]
+transform = Transform3D(-0.96316254, 0.26891983, -8.742278e-08, 0.26891983, 0.96316254, 0, 8.420234e-08, -2.3509719e-08, -1, 0.6, 1.5, -0.5)

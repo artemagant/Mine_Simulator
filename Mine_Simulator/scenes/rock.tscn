@@ -1,0 +1,38 @@
+[gd_scene load_steps=8 format=3 uid="uid://48jcjbfpwowd"]
+
+[ext_resource type="Script" uid="uid://5mv6biuiuedw" path="res://scripts/rock.gd" id="1_1di36"]
+[ext_resource type="Material" uid="uid://8gx7icvkmstm" path="res://textures/rock/rock_texture_1.tres" id="2_872ht"]
+[ext_resource type="Material" uid="uid://dbchvj780pqan" path="res://textures/rock/rock_texture_2.tres" id="3_p2d0s"]
+[ext_resource type="Material" uid="uid://dwtyvgp287tqe" path="res://textures/rock/rock_texture_3.tres" id="4_vqvgd"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_l1f6y"]
+top_radius = 0.8
+bottom_radius = 0.8
+height = 1.35
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_nhnym"]
+height = 1.35
+radius = 1.0
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_mlw50"]
+height = 1.35
+radius = 0.7
+
+[node name="rock" type="Area3D"]
+script = ExtResource("1_1di36")
+materials_array = Array[Material]([ExtResource("2_872ht"), ExtResource("3_p2d0s"), ExtResource("4_vqvgd")])
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CylinderMesh_l1f6y")
+surface_material_override/0 = ExtResource("4_vqvgd")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CylinderShape3D_nhnym")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("CylinderShape3D_mlw50")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
